@@ -26,3 +26,25 @@
   text-decoration: none;
   font-size: 1.4rem;
 }
+
+@media screen and (max-width: 700px) {
+  .accueil h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .btn {
+    box-shadow: 0 0 8px lightgray;
+    padding: 0.4rem 2rem;
+    border: 0.4px solid lightgray;
+    border-radius: 50px;
+    color: black;
+    text-decoration: none;
+    font-size: 1.4rem;
+    white-space: nowrap;
+  }
+
+  .btns {
+    gap: 1.5rem;
+  }
+}
