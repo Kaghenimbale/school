@@ -46,7 +46,7 @@ const Signin = () => {
         </label>
         <div className="btn_container">
           <button className="submit_btn" type="submit">
-            Create Account
+            Sign in
           </button>
         </div>
       </form>
