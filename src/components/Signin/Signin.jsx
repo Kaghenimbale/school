@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
+import { useDispatch } from 'react-redux';
+import { fetchUser } from '../../redux/user/userSlice';
 
 const Signin = () => {
+  const dispatch = useDispatch();
   const [data, setData] = useState({
-    name: '',
+    email: '',
     password: '',
   });
 
@@ -15,8 +18,9 @@ const Signin = () => {
   };
 
   const handleSubmit = (e) => {
+    dispatch(fetchUser(data));
     setData({
-      name: '',
+      email: '',
       password: '',
     });
     e.preventDefault();
@@ -31,10 +35,10 @@ const Signin = () => {
           <label>
             <input
               className="input"
-              type="text"
-              name="name"
+              type="email"
+              name="email"
               placeholder="Username:"
-              value={data.name}
+              value={data.email}
               onChange={handleChange}
             />
           </label>
@@ -43,7 +47,7 @@ const Signin = () => {
               className="input"
               type="password"
               name="password"
-              placeholder="Create Password:"
+              placeholder="Password:"
               value={data.password}
               onChange={handleChange}
             />
