@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
+import { useDispatch } from 'react-redux';
 import './signup.css';
+import { createUser } from '../../redux/user/userSlice';
 
 const Signup = () => {
+  const dispatch = useDispatch();
   const [data, setData] = useState({
-    name: '',
-    class: '',
     email: '',
     password: '',
-    confirmPassword: '',
+    password_confirmation: '',
   });
 
   const handleChange = (e) => {
@@ -19,13 +20,11 @@ const Signup = () => {
   };
 
   const handleSubmit = (e) => {
-    console.log(data);
+    dispatch(createUser(data));
     setData({
-      name: '',
-      class: '',
       email: '',
       password: '',
-      confirmPassword: '',
+      password_confirmation: '',
     });
     e.preventDefault();
   };
@@ -51,7 +50,7 @@ const Signup = () => {
               className="input"
               type="password"
               name="password"
-              placeholder="Create Password:"
+              placeholder="Password:"
               value={data.password}
               onChange={handleChange}
             />
@@ -60,9 +59,9 @@ const Signup = () => {
             <input
               className="input"
               type="password"
-              name="confirmPassword"
+              name="password_confirmation"
               placeholder="Confirm Password:"
-              value={data.confirmPassword}
+              value={data.password_confirmation}
               onChange={handleChange}
             />
           </label>
