@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { AiOutlineUser } from 'react-icons/ai';
 
 const Signin = () => {
   const [data, setData] = useState({
@@ -14,7 +15,6 @@ const Signin = () => {
   };
 
   const handleSubmit = (e) => {
-    console.log(data);
     setData({
       name: '',
       password: '',
@@ -23,33 +23,38 @@ const Signin = () => {
   };
   return (
     <div className="form_container">
-      <form className="form" onSubmit={handleSubmit}>
-        <label>
-          <input
-            className="input"
-            type="text"
-            name="name"
-            placeholder="Username:"
-            value={data.name}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          <input
-            className="input"
-            type="password"
-            name="password"
-            placeholder="Create Password:"
-            value={data.password}
-            onChange={handleChange}
-          />
-        </label>
-        <div className="btn_container">
-          <button className="submit_btn" type="submit">
-            Sign in
-          </button>
+      <div className="container">
+        <div className="user-icon">
+          <AiOutlineUser className="icon-user" />
         </div>
-      </form>
+        <form className="form" onSubmit={handleSubmit}>
+          <label>
+            <input
+              className="input"
+              type="text"
+              name="name"
+              placeholder="Username:"
+              value={data.name}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            <input
+              className="input"
+              type="password"
+              name="password"
+              placeholder="Create Password:"
+              value={data.password}
+              onChange={handleChange}
+            />
+          </label>
+          <div className="btn_container">
+            <button className="submit_btn" type="submit">
+              Sign in
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

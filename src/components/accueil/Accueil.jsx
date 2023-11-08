@@ -4,7 +4,7 @@ import './Accueil.css';
 const Accueil = () => {
   return (
     <div className="accueil">
-      <h1>SCHOOL MANAGMENT.</h1>
+      <h1>&lt;/MANAGMENT.&gt;</h1>
       <div className="btns">
         <NavLink className="btn" to="signup">
           SIGN UP
