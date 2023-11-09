@@ -14,7 +14,7 @@ export const createUser = createAsyncThunk('user/createUser', async (data) => {
         ...data,
       },
     });
-    console.log(response.data);
+    // console.log(response.data);
     return { ...response.data };
   } catch (err) {
     return err.message;
@@ -48,6 +48,21 @@ const userSlice = createSlice({
         user: action.payload,
       }))
       .addCase(createUser.rejected, (state, action) => ({
+        ...state,
+        error: action.payload,
+      }))
+      .addCase(fetchUser.pending, (state) => ({
+        ...state,
+      }))
+      .addCase(fetchUser.fulfilled, (state, action) => {
+        localStorage.setItem('user', JSON.stringify(action.payload));
+        console.log(action.payload);
+        return {
+          ...state,
+          user: action.payload,
+        };
+      })
+      .addCase(fetchUser.rejected, (state, action) => ({
         ...state,
         error: action.payload,
       }));
