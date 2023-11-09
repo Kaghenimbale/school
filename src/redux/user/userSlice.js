@@ -55,11 +55,12 @@ const userSlice = createSlice({
         ...state,
       }))
       .addCase(fetchUser.fulfilled, (state, action) => {
-        localStorage.setItem('user', JSON.stringify(action.payload));
-        console.log(action.payload);
+        localStorage.setItem('user', JSON.stringify(action.payload.user.id));
+        console.log(action.payload.user.id);
         return {
           ...state,
           user: action.payload,
+          loggedIn: true,
         };
       })
       .addCase(fetchUser.rejected, (state, action) => ({

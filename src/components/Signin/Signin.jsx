@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { fetchUser } from '../../redux/user/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 const Signin = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [data, setData] = useState({
     email: '',
     password: '',
@@ -19,6 +21,7 @@ const Signin = () => {
 
   const handleSubmit = (e) => {
     dispatch(fetchUser(data));
+    navigate('/');
     setData({
       email: '',
       password: '',
