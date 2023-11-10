@@ -1,0 +1,27 @@
+.navbar {
+  width: 20rem;
+  height: 100vh;
+  background: #3b76ee;
+  border-radius: 0 20px 20px 0;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.navbar h2 {
+  color: whitesmoke;
+}
+
+.navlinks {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.navlink {
+  color: whitesmoke;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
