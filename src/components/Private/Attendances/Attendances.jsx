@@ -1,5 +1,5 @@
 const Attendances = () => {
-  return <div>Attendances</div>;
+  return <div className="content">Attendances</div>;
 };
 
 export default Attendances;

@@ -3,6 +3,7 @@ import { AiOutlineUser } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import './signup.css';
 import { createUser } from '../../redux/user/userSlice';
+import { NavLink } from 'react-router-dom';
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -69,6 +70,12 @@ const Signup = () => {
             <button className="submit_btn" type="submit">
               Create Account
             </button>
+            <span className="question">
+              <span>Already have an account ?</span>
+              <NavLink className="link" to="/">
+                Sign in
+              </NavLink>
+            </span>
           </div>
         </form>
       </div>

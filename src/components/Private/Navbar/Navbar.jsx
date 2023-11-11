@@ -31,7 +31,15 @@ const Navbar = () => {
         <ul className="navlinks">
           {navbars.map((navbar) => {
             return (
-              <NavLink className="navlink" key={navbar}>
+              <NavLink
+                className="navlink"
+                to={
+                  navbar.toLowerCase() === 'dashboard'
+                    ? '/'
+                    : navbar.toLowerCase()
+                }
+                key={navbar}
+              >
                 {navbar}
               </NavLink>
             );

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { fetchUser } from '../../redux/user/userSlice';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Signin = () => {
   const dispatch = useDispatch();
@@ -59,6 +59,13 @@ const Signin = () => {
             <button className="submit_btn" type="submit">
               Sign in
             </button>
+
+            <span className="question">
+              <span>create an account ?</span>
+              <NavLink className="link" to="/">
+                Sign up
+              </NavLink>
+            </span>
           </div>
         </form>
       </div>
