@@ -6,6 +6,12 @@
   padding: 2rem;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+}
+
+.nav-container {
+  display: flex;
+  flex-direction: column;
   gap: 3rem;
 }
 

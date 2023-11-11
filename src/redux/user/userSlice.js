@@ -35,6 +35,15 @@ export const fetchUser = createAsyncThunk('user/fetchUser', async (data) => {
   }
 });
 
+export const logoutUser = createAsyncThunk('user/logoutUser', async () => {
+  try {
+    const response = await axios.delete('http://127.0.0.1:3000/logout');
+    console.log(response);
+  } catch (err) {
+    return err.message;
+  }
+});
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -56,7 +65,7 @@ const userSlice = createSlice({
       }))
       .addCase(fetchUser.fulfilled, (state, action) => {
         localStorage.setItem('user', JSON.stringify(action.payload.user.id));
-        console.log(action.payload.user.id);
+        localStorage.setItem('userInfo', JSON.stringify(action.payload.user));
         return {
           ...state,
           user: action.payload,
