@@ -1,8 +1,10 @@
 .content {
   /* background: red; */
-  position: relative;
+  position: absolute;
   top: 0;
   right: 0;
   height: 100vh;
   left: 20rem;
+  padding: 1rem;
+  overflow-y: scroll;
 }
