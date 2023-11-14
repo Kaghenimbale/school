@@ -37,23 +37,26 @@
 }
 
 .active {
-  background: white;
+  background: rgba(255, 255, 255, 0.922);
   padding: 0.6rem;
+  margin-left: 0.6rem;
   border-radius: 0 50px 50px 0px;
+  transition: margin-left;
+  transition-duration: 1s;
 }
 
 .active .icon {
   color: black;
 }
 
-.active .title {
+.active .title_1 {
   color: black;
 }
 
 .navlink {
   color: whitesmoke;
   text-decoration: none;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: bold;
   display: flex;
   align-items: center;

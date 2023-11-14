@@ -16,7 +16,7 @@ import PropTypes from 'prop-types';
 const Icon = ({ icon: IconComponent, title }) => (
   <div className="navlink">
     <IconComponent className="icon" />
-    <span className="title">{title}</span>
+    <span className="title_1">{title}</span>
   </div>
 );
 
@@ -58,6 +58,12 @@ const Navbar = () => {
   ];
   const dispatch = useDispatch();
 
+  // const handleClickOutsideTheNavbar = (e) => {
+  //   console.log(e.target.closest('.navbar'));
+  // };
+
+  // document.addEventListener('click', handleClickOutsideTheNavbar);
+
   const handleLogout = () => {
     dispatch(logoutUser());
     localStorage.removeItem('user');
@@ -65,7 +71,7 @@ const Navbar = () => {
     window.location.reload();
   };
   return (
-    <div className="navbar">
+    <div id="navbar" className="navbar">
       <div className="nav-container">
         <Link to="/" className="navlink">
           <h2 className="title">
