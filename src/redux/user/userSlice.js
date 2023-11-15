@@ -14,7 +14,6 @@ export const createUser = createAsyncThunk('user/createUser', async (data) => {
         ...data,
       },
     });
-    // console.log(response.data);
     return { ...response.data };
   } catch (err) {
     return err.message;
@@ -28,7 +27,6 @@ export const fetchUser = createAsyncThunk('user/fetchUser', async (data) => {
         ...data,
       },
     });
-    console.log(response.data);
     return { ...response.data };
   } catch (err) {
     return err.message;
@@ -38,7 +36,7 @@ export const fetchUser = createAsyncThunk('user/fetchUser', async (data) => {
 export const logoutUser = createAsyncThunk('user/logoutUser', async () => {
   try {
     const response = await axios.delete('http://127.0.0.1:3000/logout');
-    console.log(response);
+    return response;
   } catch (err) {
     return err.message;
   }

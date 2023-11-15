@@ -11,18 +11,21 @@ import { BiSolidUserRectangle } from 'react-icons/bi';
 import { HiMiniUserPlus } from 'react-icons/hi2';
 import { MdOutlinePayment } from 'react-icons/md';
 import { RiSettings3Fill } from 'react-icons/ri';
+import { LuMenu } from 'react-icons/lu';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
-const Icon = ({ icon: IconComponent, title }) => (
+const Icon = ({ icon: IconComponent, title, openNav }) => (
   <div className="navlink">
     <IconComponent className="icon" />
-    <span className="title_1">{title}</span>
+    <span className={openNav ? 'title_1' : 'hidden'}>{title}</span>
   </div>
 );
 
 Icon.propTypes = {
   icon: PropTypes.elementType.isRequired,
   title: PropTypes.string.isRequired,
+  openNav: PropTypes.bool.isRequired,
 };
 
 const Navbar = () => {
@@ -57,12 +60,24 @@ const Navbar = () => {
     },
   ];
   const dispatch = useDispatch();
+  const [openNav, setOpenNav] = useState(false);
+  console.log(openNav);
 
   // const handleClickOutsideTheNavbar = (e) => {
-  //   console.log(e.target.closest('.navbar'));
+  //   if (
+  //     open &&
+  //     !e.target.closest('.navbar') &&
+  //     !e.target.closest('.menu_container')
+  //   ) {
+  //     setOpenNav(false);
+  //   }
   // };
 
   // document.addEventListener('click', handleClickOutsideTheNavbar);
+
+  const renderMenu = () => {
+    setOpenNav((prev) => !prev);
+  };
 
   const handleLogout = () => {
     dispatch(logoutUser());
@@ -71,11 +86,19 @@ const Navbar = () => {
     window.location.reload();
   };
   return (
-    <div id="navbar" className="navbar">
+    <div id="navbar" className={openNav ? 'navbar' : 'navbar_small'}>
+      <button
+        type="button"
+        className={openNav ? 'menu_container' : 'menu_container_hidden'}
+        onClick={renderMenu}
+      >
+        <LuMenu className="menu" />
+      </button>
       <div className="nav-container">
         <Link to="/" className="navlink">
           <h2 className="title">
-            <FaSchool className="icon" /> &lt;/MANAGMENT.&gt;
+            <FaSchool className="icon" />
+            <p className={openNav ? 'logo' : 'hidden'}>&lt;/MANAGMENT.&gt;</p>
           </h2>
         </Link>
         <ul className="navlinks">
@@ -90,15 +113,20 @@ const Navbar = () => {
                 }
                 key={navbar.title}
               >
-                <Icon key={index} icon={navbar.icon} title={navbar.title} />
+                <Icon
+                  key={index}
+                  icon={navbar.icon}
+                  title={navbar.title}
+                  openNav={openNav}
+                />
               </NavLink>
             );
           })}
         </ul>
       </div>
-      <button className="btn" type="button" onClick={handleLogout}>
-        <BsBoxArrowInLeft />
-        Logout
+      <button className="nav_btn" type="button" onClick={handleLogout}>
+        <BsBoxArrowInLeft className="icon" />
+        <p className={openNav ? 'logout' : 'hidden'}>Logout</p>
       </button>
     </div>
   );
