@@ -1,6 +1,6 @@
 const Dashboard = () => {
   return (
-    <div className="content">
+    <div>
       Dashboard Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
       facilis beatae quod dolore soluta nobis incidunt dolorum aspernatur nam
       maxime. Laboriosam, consequatur impedit. Sint odit aspernatur, labore eum
