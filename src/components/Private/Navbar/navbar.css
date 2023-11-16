@@ -14,7 +14,7 @@
   box-shadow: 0 0 20px black;
   z-index: 5;
   transition: width;
-  transition-duration: 0.5s;
+  transition-duration: 0.2s;
   transition-timing-function: ease-in;
 }
 
@@ -34,7 +34,7 @@
   box-shadow: 0 0 20px black;
   z-index: 5;
   transition: width;
-  transition-duration: 1.5s;
+  transition-duration: 0.5s;
   transition-timing-function: ease-out;
 }
 
@@ -71,26 +71,28 @@
 }
 
 .active {
-  background: rgba(255, 255, 255, 0.922);
+  background: white;
+  width: 100%;
   padding: 0.6rem;
   margin-left: 0.6rem;
   border-radius: 0 50px 50px 0px;
   transition: margin-left;
-  transition-duration: 1s;
+  transition-duration: 0.5s;
 }
 
 .active .icon {
-  color: black;
+  color: #0f5b97;
 }
 
 .active .title_1 {
-  color: black;
+  color: #0f5b97;
 }
 
 .hidden {
   display: none;
   opacity: 0;
   transition: display;
+  transition-delay: 1s;
   transition-duration: 0.5s;
   transition-timing-function: ease-in;
 }
@@ -119,7 +121,7 @@
   border-radius: 5px;
   border: none;
   transition: left;
-  transition-duration: 0.5s;
+  transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
 }
 
