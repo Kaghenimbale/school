@@ -5,4 +5,19 @@
   left: 20rem;
   padding: 1rem;
   z-index: 1;
+  transition: left;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+
+.content_big {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 6rem;
+  padding: 1rem;
+  z-index: 1;
+  transition: left;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
 }

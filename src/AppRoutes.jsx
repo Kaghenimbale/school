@@ -6,10 +6,12 @@ import Attendances from './components/Private/Attendances/Attendances';
 import Payment from './components/Private/Payment/Payment';
 import Settings from './components/Private/Settings/Settings';
 import { Route, Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const AppRoutes = () => {
+  const openNav = useSelector((state) => state.navOpen.openNav);
   return (
-    <div className="content">
+    <div className={openNav ? 'content' : 'content_big'}>
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="students" element={<Student />} />

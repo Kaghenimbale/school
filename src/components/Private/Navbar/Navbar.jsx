@@ -2,7 +2,7 @@ import './navbar.css';
 import { Link, NavLink } from 'react-router-dom';
 import { FaSchool } from 'react-icons/fa';
 import { logoutUser } from '../../../redux/user/userSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BsBoxArrowInLeft } from 'react-icons/bs';
 import { RxDashboard } from 'react-icons/rx';
 import { HiUsers } from 'react-icons/hi';
@@ -13,7 +13,7 @@ import { MdOutlinePayment } from 'react-icons/md';
 import { RiSettings3Fill } from 'react-icons/ri';
 import { LuMenu } from 'react-icons/lu';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { navOpener } from '../../../redux/navSlice';
 
 const Icon = ({ icon: IconComponent, title, openNav }) => (
   <div className="navlink">
@@ -60,8 +60,8 @@ const Navbar = () => {
     },
   ];
   const dispatch = useDispatch();
-  const [openNav, setOpenNav] = useState(false);
-  console.log(openNav);
+  const openNav = useSelector((state) => state.navOpen.openNav);
+  // const [openNav, setOpenNav] = useState(false);
 
   // const handleClickOutsideTheNavbar = (e) => {
   //   if (
@@ -76,7 +76,7 @@ const Navbar = () => {
   // document.addEventListener('click', handleClickOutsideTheNavbar);
 
   const renderMenu = () => {
-    setOpenNav((prev) => !prev);
+    dispatch(navOpener());
   };
 
   const handleLogout = () => {
