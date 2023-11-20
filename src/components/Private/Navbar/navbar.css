@@ -7,11 +7,11 @@
   position: fixed;
   background: #0f5b97;
   border-radius: 0 20px 20px 0;
-  padding: 2rem;
+  padding: 2rem 0 2rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0 0 20px black;
+  /* box-shadow: 0 0 20px black; */
   z-index: 5;
   transition: width;
   transition-duration: 0.2s;
@@ -27,11 +27,11 @@
   position: fixed;
   background: #0f5b97;
   border-radius: 0 20px 20px 0;
-  padding: 2rem;
+  padding: 2rem 0 2rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0 0 20px black;
+  /* box-shadow: 0 0 20px black; */
   z-index: 5;
   transition: width;
   transition-duration: 0.5s;
@@ -74,10 +74,37 @@
   background: white;
   width: 100%;
   padding: 0.6rem;
-  margin-left: 0.6rem;
-  border-radius: 0 50px 50px 0px;
+  /* margin-left: 0.6rem; */
+  border-radius: 50px 0 0 50px;
   transition: margin-left;
   transition-duration: 0.5s;
+  position: relative;
+}
+
+.active::before {
+  content: '';
+  background: transparent;
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 29px 29px 0 10px white;
+  z-index: -1;
+}
+
+.active::after {
+  content: '';
+  background: transparent;
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 30px -30px 0 10px white;
+  z-index: 1;
 }
 
 .active .icon {
