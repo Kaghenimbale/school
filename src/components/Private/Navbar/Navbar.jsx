@@ -11,6 +11,7 @@ import { BiSolidUserRectangle } from 'react-icons/bi';
 import { HiMiniUserPlus } from 'react-icons/hi2';
 import { MdOutlinePayment } from 'react-icons/md';
 import { RiSettings3Fill } from 'react-icons/ri';
+import { MdLocalLibrary } from 'react-icons/md';
 import { LuMenu } from 'react-icons/lu';
 import PropTypes from 'prop-types';
 import { navOpener } from '../../../redux/navSlice';
@@ -55,25 +56,16 @@ const Navbar = () => {
       icon: MdOutlinePayment,
     },
     {
+      title: 'Library',
+      icon: MdLocalLibrary,
+    },
+    {
       title: 'Settings',
       icon: RiSettings3Fill,
     },
   ];
   const dispatch = useDispatch();
   const openNav = useSelector((state) => state.navOpen.openNav);
-  // const [openNav, setOpenNav] = useState(false);
-
-  // const handleClickOutsideTheNavbar = (e) => {
-  //   if (
-  //     open &&
-  //     !e.target.closest('.navbar') &&
-  //     !e.target.closest('.menu_container')
-  //   ) {
-  //     setOpenNav(false);
-  //   }
-  // };
-
-  // document.addEventListener('click', handleClickOutsideTheNavbar);
 
   const renderMenu = () => {
     dispatch(navOpener());

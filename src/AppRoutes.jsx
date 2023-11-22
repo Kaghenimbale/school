@@ -7,6 +7,7 @@ import Payment from './components/Private/Payment/Payment';
 import Settings from './components/Private/Settings/Settings';
 import { Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Library from './components/library/Library';
 
 const AppRoutes = () => {
   const openNav = useSelector((state) => state.navOpen.openNav);
@@ -19,6 +20,7 @@ const AppRoutes = () => {
         <Route path="teachers" element={<Teachers />} />
         <Route path="attendances" element={<Attendances />} />
         <Route path="payment" element={<Payment />} />
+        <Route path="library" element={<Library />} />
         <Route path="settings" element={<Settings />} />
       </Routes>
     </div>
