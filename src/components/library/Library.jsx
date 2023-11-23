@@ -45,6 +45,7 @@ const Library = () => {
               className="input_library"
               name="Student_name"
               placeholder="Student Name"
+              value={data.Student_name}
               required
               onChange={handleChange}
             />
@@ -55,6 +56,7 @@ const Library = () => {
               type="text"
               className="input_library"
               name="Book_title"
+              value={data.Book_title}
               placeholder="Book Title"
               required
               onChange={handleChange}
@@ -67,6 +69,7 @@ const Library = () => {
               className="input_library"
               name="Book_id"
               placeholder="Book ID"
+              value={data.Book_id}
               required
               onChange={handleChange}
             />
@@ -77,6 +80,7 @@ const Library = () => {
               className="input_library"
               name="Student_class"
               placeholder="Student Class"
+              value={data.Student_class}
               required
               onChange={handleChange}
             />
@@ -87,6 +91,7 @@ const Library = () => {
               className="input_library"
               name="Date_taken"
               placeholder="Date"
+              value={data.Date_taken}
               required
               onChange={handleChange}
             />
@@ -97,6 +102,7 @@ const Library = () => {
               className="input_library"
               name="Time"
               placeholder="Time"
+              value={data.Time}
               required
               onChange={handleChange}
             />
@@ -106,6 +112,7 @@ const Library = () => {
               type="text"
               className="input_library"
               name="Librarian_name"
+              value={data.Librarian_name}
               placeholder="Librarian Name"
               required
               onChange={handleChange}
@@ -118,6 +125,7 @@ const Library = () => {
               className="input_library"
               name="Librarian_phone_number"
               placeholder="Librarian Phone Number"
+              value={data.Librarian_phone_number}
               required
               onChange={handleChange}
             />
