@@ -46,6 +46,7 @@ const bookSlice = createSlice({
       .addCase(fetchBooks.pending, (state) => ({
         ...state,
         isLoading: true,
+        err: null,
       }))
       .addCase(fetchBooks.fulfilled, (state, action) => ({
         ...state,
