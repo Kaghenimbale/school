@@ -42,6 +42,7 @@ const Signup = () => {
               type="email"
               name="email"
               placeholder="Email:"
+              required
               value={data.email}
               onChange={handleChange}
             />
@@ -52,6 +53,7 @@ const Signup = () => {
               type="password"
               name="password"
               placeholder="Password:"
+              required
               value={data.password}
               onChange={handleChange}
             />
@@ -62,6 +64,7 @@ const Signup = () => {
               type="password"
               name="password_confirmation"
               placeholder="Confirm Password:"
+              required
               value={data.password_confirmation}
               onChange={handleChange}
             />

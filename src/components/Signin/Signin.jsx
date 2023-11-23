@@ -41,6 +41,7 @@ const Signin = () => {
               type="email"
               name="email"
               placeholder="Username:"
+              required
               value={data.email}
               onChange={handleChange}
             />
@@ -51,6 +52,7 @@ const Signin = () => {
               type="password"
               name="password"
               placeholder="Password:"
+              required
               value={data.password}
               onChange={handleChange}
             />

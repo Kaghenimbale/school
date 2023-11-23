@@ -3,7 +3,7 @@
   top: 0;
   right: 0;
   left: 20rem;
-  padding: 1rem 5rem;
+  padding: 1rem;
   z-index: 1;
   transition: left;
   transition-duration: 0.2s;
