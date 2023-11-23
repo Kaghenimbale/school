@@ -1,7 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './library.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchBooks, postBook } from '../../redux/bookSlice';
 
 const Library = () => {
+  const dispatch = useDispatch();
+
   const [data, setData] = useState({
     Student_name: '',
     Book_title: '',
@@ -20,20 +24,34 @@ const Library = () => {
       };
     });
   };
-  const handleSubmit = (e) => {
-    console.log(data);
-    setData({
-      Student_name: '',
-      Book_title: '',
-      Book_id: '',
-      Student_class: '',
-      Date_taken: '',
-      Time: '',
-      Librarian_name: '',
-      Librarian_phone_number: '',
-    });
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      await dispatch(postBook(data));
+
+      dispatch(fetchBooks());
+
+      setData({
+        Student_name: '',
+        Book_title: '',
+        Book_id: '',
+        Student_class: '',
+        Date_taken: '',
+        Time: '',
+        Librarian_name: '',
+        Librarian_phone_number: '',
+      });
+    } catch (error) {
+      console.error('Error adding book:', error);
+    }
   };
+
+  const books = useSelector((state) => state.books);
+  console.log(books);
+  useEffect(() => {
+    dispatch(fetchBooks());
+  }, [dispatch]);
   return (
     <div className="library">
       <h2>LIBRARY BOOKS MANAGMENT</h2>
