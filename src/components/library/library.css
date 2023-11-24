@@ -61,13 +61,16 @@
 }
 
 .table_content td {
-  padding: 0.6rem;
+  padding: 0.3rem;
   color: rgb(38, 38, 38);
 }
 
 .btn_update {
   border: none;
   background: none;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 5px;
 }
 
 .table_content:nth-child(even) {
@@ -76,10 +79,18 @@
 
 .edit {
   font-size: 1.2rem;
-  color: green;
+  background: rgb(15, 109, 15);
 }
 
 .delete {
-  color: rgb(193, 38, 38);
+  background: rgb(193, 38, 38);
   font-size: 1.2rem;
+}
+
+.btn_container {
+  display: flex;
+  flex-direction: row;
+  gap: 0.6rem;
+  align-items: center;
+  justify-content: center;
 }

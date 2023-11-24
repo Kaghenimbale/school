@@ -174,8 +174,7 @@ const Library = () => {
               <th>BOOK ID</th>
               <th>LIBRARIAN NAME</th>
               <th>LIBRARIAN PHONE NUMBER</th>
-              <th>EDIT</th>
-              <th>DELETE</th>
+              <th>ACTION</th>
             </tr>
             {books.map((book) => {
               return isLoading ? (
@@ -190,12 +189,10 @@ const Library = () => {
                   <td>{book.Book_id}</td>
                   <td>{book.Librarian_name}</td>
                   <td>{book.Librarian_phone_number}</td>
-                  <td>
+                  <td className="btn_container">
                     <button type="button" className="btn_update edit">
                       <FaRegEdit />
                     </button>
-                  </td>
-                  <td>
                     <button type="button" className="btn_update delete">
                       <FaTrashAlt />
                     </button>
