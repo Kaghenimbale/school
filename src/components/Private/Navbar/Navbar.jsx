@@ -1,5 +1,5 @@
 import './navbar.css';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { FaSchool } from 'react-icons/fa';
 import { logoutUser } from '../../../redux/user/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -65,6 +65,7 @@ const Navbar = () => {
     },
   ];
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const openNav = useSelector((state) => state.navOpen.openNav);
 
   const renderMenu = () => {
@@ -75,6 +76,7 @@ const Navbar = () => {
     dispatch(logoutUser());
     localStorage.removeItem('user');
     localStorage.removeItem('userInfo');
+    navigate('/');
     window.location.reload();
   };
   return (

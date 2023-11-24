@@ -110,6 +110,7 @@
 .menu_container {
   background: #0f5b97;
   position: absolute;
+  top: 0.5rem;
   left: 20.5rem;
   padding: 0.4rem;
   width: 50px;
@@ -128,6 +129,7 @@
 .menu_container_hidden {
   background: #0f5b97;
   position: absolute;
+  top: 0.5rem;
   left: 6.5rem;
   padding: 0.4rem;
   width: 50px;

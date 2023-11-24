@@ -5,6 +5,7 @@ import axios from 'axios';
 const initialState = {
   books: [],
   isLoading: false,
+  isFetched: false,
   err: null,
 };
 
@@ -46,11 +47,13 @@ const bookSlice = createSlice({
       .addCase(fetchBooks.pending, (state) => ({
         ...state,
         isLoading: true,
+        isFetched: false,
         err: null,
       }))
       .addCase(fetchBooks.fulfilled, (state, action) => ({
         ...state,
-        books: action.payload,
+        books: [...action.payload],
+        isFetched: true,
         isLoading: false,
       }))
       .addCase(fetchBooks.rejected, (state, action) => ({
