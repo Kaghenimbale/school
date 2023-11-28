@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './library.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBooks, postBook } from '../../redux/bookSlice';
-import { BounceLoader } from 'react-spinners';
+import { BeatLoader } from 'react-spinners';
 import { FaTrashAlt } from 'react-icons/fa';
 import { FaRegEdit } from 'react-icons/fa';
 
@@ -164,22 +164,27 @@ const Library = () => {
           </form>
         </div>
         <div className="table_container">
+          {isLoading && (
+            <div className="spinner">
+              <BeatLoader className="loading-spinner" color="#0f5b97" />
+            </div>
+          )}
           <table className="table">
-            <tr className="table_title">
-              <th>ID</th>
-              <th>STUDENT NAME</th>
-              <th>STUDENT CLASS</th>
-              <th>BOOK TITLE</th>
-              <th>DATE</th>
-              <th>BOOK ID</th>
-              <th>LIBRARIAN NAME</th>
-              <th>LIBRARIAN PHONE NUMBER</th>
-              <th>ACTION</th>
-            </tr>
-            {books.map((book) => {
-              return isLoading ? (
-                <BounceLoader />
-              ) : (
+            <thead>
+              <tr className="table_title">
+                <th>ID</th>
+                <th>STUDENT NAME</th>
+                <th>STUDENT CLASS</th>
+                <th>BOOK TITLE</th>
+                <th>DATE</th>
+                <th>BOOK ID</th>
+                <th>LIBRARIAN NAME</th>
+                <th>LIBRARIAN PHONE NUMBER</th>
+                <th>ACTION</th>
+              </tr>
+            </thead>
+            <tbody>
+              {books.map((book) => (
                 <tr className="table_content" key={book.id}>
                   <td>{book.id}</td>
                   <td>{book.Student_name}</td>
@@ -198,8 +203,8 @@ const Library = () => {
                     </button>
                   </td>
                 </tr>
-              );
-            })}
+              ))}
+            </tbody>
           </table>
         </div>
       </div>
