@@ -34,23 +34,27 @@ const Library = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch(postBook(data));
+    try {
+      await dispatch(postBook(data));
 
-    dispatch(fetchBooks());
+      dispatch(fetchBooks());
 
-    setData({
-      Student_name: '',
-      Book_title: '',
-      Book_id: '',
-      Student_class: '',
-      Date_taken: '',
-      Time: '',
-      Librarian_name: '',
-      Librarian_phone_number: '',
-    });
+      setData({
+        Student_name: '',
+        Book_title: '',
+        Book_id: '',
+        Student_class: '',
+        Date_taken: '',
+        Time: '',
+        Librarian_name: '',
+        Librarian_phone_number: '',
+      });
+    } catch (error) {
+      console.error('Error submitting book:', error);
+    }
   };
   useEffect(() => {
     if (!isFetched) {
@@ -61,6 +65,14 @@ const Library = () => {
       dispatch(fetchBooks());
     }
   }, [dispatch, isLoading, isFetched]);
+
+  const handleDelete = () => {
+    console.log('handleDelete');
+  };
+
+  const handleUpdate = () => {
+    console.log('handleUpdate');
+  };
   return (
     <div className="library">
       <h2>LIBRARY BOOKS MANAGMENT</h2>
@@ -195,10 +207,18 @@ const Library = () => {
                   <td>{book.Librarian_name}</td>
                   <td>{book.Librarian_phone_number}</td>
                   <td className="btn_container">
-                    <button type="button" className="btn_update edit">
+                    <button
+                      type="button"
+                      className="btn_update edit"
+                      onClick={handleUpdate}
+                    >
                       <FaRegEdit />
                     </button>
-                    <button type="button" className="btn_update delete">
+                    <button
+                      type="button"
+                      className="btn_update delete"
+                      onClick={handleDelete}
+                    >
                       <FaTrashAlt />
                     </button>
                   </td>
