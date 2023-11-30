@@ -202,7 +202,7 @@ const Library = () => {
                   <td>{book.Student_name}</td>
                   <td>{book.Student_class}</td>
                   <td>{book.Book_title}</td>
-                  <td>{book.created_at}</td>
+                  <td>{book.created_at.slice(0, 10)}</td>
                   <td>{book.Book_id}</td>
                   <td>{book.Librarian_name}</td>
                   <td>{book.Librarian_phone_number}</td>
