@@ -29,6 +29,20 @@ export const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
     return err.message;
   }
 });
+
+export const deleteBook = createAsyncThunk(
+  'books/deleteBook',
+  async (bookId) => {
+    try {
+      await axios.delete(`http://127.0.0.1:3000/api/v1/books/${bookId}`);
+
+      return bookId;
+    } catch (err) {
+      return err.message;
+    }
+  },
+);
+
 const bookSlice = createSlice({
   name: 'books',
   initialState,
@@ -60,7 +74,18 @@ const bookSlice = createSlice({
         ...state,
         err: action.payload,
         isLoading: false,
-      }));
+      }))
+      .addCase(deleteBook.fulfilled, (state, action) => {
+        const newBooks = state.books.filter((book) => {
+          book.id !== action.payload;
+        });
+        return {
+          ...state,
+          books: newBooks,
+          isFetched: false,
+          isLoading: false,
+        };
+      });
   },
 });
 
