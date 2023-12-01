@@ -1,18 +1,24 @@
 import { useEffect, useState } from 'react';
 import './library.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteBook, fetchBooks, postBook } from '../../redux/bookSlice';
+import {
+  UpdateBook,
+  deleteBook,
+  fetchBooks,
+  postBook,
+} from '../../redux/bookSlice';
 import { BeatLoader } from 'react-spinners';
 import { FaTrashAlt } from 'react-icons/fa';
 import { FaRegEdit } from 'react-icons/fa';
+import { HiOutlineSave } from 'react-icons/hi';
 
 const Library = () => {
-  const { books, isLoading, isFetched, err } = useSelector(
-    (state) => state.books,
-  );
+  const { books, isLoading, isFetched } = useSelector((state) => state.books);
+  const [update, setUpdate] = useState(false);
+  const [editId, setEditId] = useState(null);
   const dispatch = useDispatch();
 
-  console.log(books, isLoading, isFetched, err);
+  // console.log(books, isLoading, isFetched, err);
 
   const [data, setData] = useState({
     Student_name: '',
@@ -21,6 +27,15 @@ const Library = () => {
     Student_class: '',
     Date_taken: '',
     Time: '',
+    Librarian_name: '',
+    Librarian_phone_number: '',
+  });
+
+  const [editdata, setEditData] = useState({
+    Student_name: '',
+    Book_title: '',
+    Book_id: '',
+    Student_class: '',
     Librarian_name: '',
     Librarian_phone_number: '',
   });
@@ -70,9 +85,24 @@ const Library = () => {
     dispatch(deleteBook(id));
   };
 
-  const handleUpdate = (id) => {
-    console.log('handleUpdate', id);
+  const handleUpdate = (id, bookData) => {
+    setUpdate(true);
+    setEditId(id);
+    setEditData({ ...bookData });
   };
+
+  const handleChangeEdit = (e) => {
+    setEditData({
+      [e.target.name]: e.target.value,
+    });
+    console.log(editdata);
+  };
+
+  const handleSubmitUpdate = (id) => {
+    dispatch(UpdateBook(id, editId));
+    setUpdate(false);
+  };
+
   return (
     <div className="library">
       <h2>LIBRARY BOOKS MANAGMENT</h2>
@@ -199,21 +229,107 @@ const Library = () => {
               {books.map((book) => (
                 <tr className="table_content" key={book.id}>
                   <td>{book.id}</td>
-                  <td>{book.Student_name}</td>
-                  <td>{book.Student_class}</td>
-                  <td>{book.Book_title}</td>
-                  <td>{book.created_at.slice(0, 10)}</td>
-                  <td>{book.Book_id}</td>
-                  <td>{book.Librarian_name}</td>
-                  <td>{book.Librarian_phone_number}</td>
+                  {update && editId === book.id ? (
+                    <td>
+                      <input
+                        type="text"
+                        name="Student_name"
+                        value={editdata.Student_name}
+                        onChange={handleChangeEdit}
+                      />
+                    </td>
+                  ) : (
+                    <td>{book.Student_name}</td>
+                  )}
+                  {update && editId === book.id ? (
+                    <td>
+                      <input
+                        type="text"
+                        name="Student_class"
+                        value={editdata.Student_class}
+                        onChange={handleChangeEdit}
+                      />
+                    </td>
+                  ) : (
+                    <td>{book.Student_class}</td>
+                  )}
+                  {update && editId === book.id ? (
+                    <td>
+                      <input
+                        type="text"
+                        name="Book_title"
+                        value={editdata.Book_title}
+                        onChange={handleChangeEdit}
+                      />
+                    </td>
+                  ) : (
+                    <td>{book.Book_title}</td>
+                  )}
+                  {update && editId === book.id ? (
+                    <td>
+                      <input
+                        type="date"
+                        value={editdata.created_at.slice(0, 10)}
+                        onChange={handleChangeEdit}
+                      />
+                    </td>
+                  ) : (
+                    <td>{book.created_at.slice(0, 10)}</td>
+                  )}
+                  {update && editId === book.id ? (
+                    <td>
+                      <input
+                        type="text"
+                        name="Book_id"
+                        value={editdata.Book_id}
+                        onChange={handleChangeEdit}
+                      />
+                    </td>
+                  ) : (
+                    <td>{book.Book_id}</td>
+                  )}
+                  {update && editId === book.id ? (
+                    <td>
+                      <input
+                        type="text"
+                        name="Librarian_name"
+                        value={editdata.Librarian_name}
+                        onChange={handleChangeEdit}
+                      />
+                    </td>
+                  ) : (
+                    <td>{book.Librarian_name}</td>
+                  )}
+                  {update && editId === book.id ? (
+                    <td>
+                      <input
+                        type="tel"
+                        name="Librarian_phone_number"
+                        value={editdata.Librarian_phone_number}
+                        onChange={handleChangeEdit}
+                      />
+                    </td>
+                  ) : (
+                    <td>{book.Librarian_phone_number}</td>
+                  )}
                   <td className="btn_container">
-                    <button
-                      type="button"
-                      className="btn_update edit"
-                      onClick={() => handleUpdate(book.id)}
-                    >
-                      <FaRegEdit />
-                    </button>
+                    {update && editId ? (
+                      <button
+                        type="button"
+                        className="btn_update edit"
+                        onClick={() => handleSubmitUpdate(book.id, book)}
+                      >
+                        <HiOutlineSave />
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        className="btn_update edit"
+                        onClick={() => handleUpdate(book.id, book)}
+                      >
+                        <FaRegEdit />
+                      </button>
+                    )}
                     <button
                       type="button"
                       className="btn_update delete"

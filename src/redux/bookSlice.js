@@ -43,6 +43,21 @@ export const deleteBook = createAsyncThunk(
   },
 );
 
+export const UpdateBook = createAsyncThunk(
+  'books/UpdateBook',
+  async (bookId, data) => {
+    try {
+      const response = await axios.put(
+        `http://127.0.0.1:3000/api/v1/books/${bookId}`,
+        data,
+      );
+      console.log(response);
+    } catch (err) {
+      return err.message;
+    }
+  },
+);
+
 const bookSlice = createSlice({
   name: 'books',
   initialState,
@@ -75,6 +90,10 @@ const bookSlice = createSlice({
         err: action.payload,
         isLoading: false,
       }))
+      .addCase(deleteBook.pending, (state) => ({
+        ...state,
+        isLoading: true,
+      }))
       .addCase(deleteBook.fulfilled, (state, action) => {
         const newBooks = state.books.filter((book) => {
           book.id !== action.payload;
@@ -85,7 +104,11 @@ const bookSlice = createSlice({
           isFetched: false,
           isLoading: false,
         };
-      });
+      })
+      .addCase(deleteBook.rejected, (state) => ({
+        ...state,
+        isLoading: false,
+      }));
   },
 });
 
