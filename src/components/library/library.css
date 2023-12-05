@@ -47,6 +47,7 @@
   width: fit-content;
   background: #0f5b97;
   color: white;
+  border-radius: 5px;
 }
 
 .table_container {

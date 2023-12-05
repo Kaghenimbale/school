@@ -1,10 +1,16 @@
 import { useEffect, useState } from 'react';
 import './library.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteBook, fetchBooks, postBook } from '../../redux/bookSlice';
+import {
+  deleteBook,
+  fetchBooks,
+  postBook,
+  updateBook,
+} from '../../redux/bookSlice';
 import { BeatLoader } from 'react-spinners';
 import { FaTrashAlt } from 'react-icons/fa';
 import { FaRegEdit } from 'react-icons/fa';
+import { HiOutlineSave } from 'react-icons/hi';
 
 const Library = () => {
   const { books, isLoading, isFetched, err } = useSelector(
@@ -12,7 +18,7 @@ const Library = () => {
   );
   const dispatch = useDispatch();
 
-  console.log(books, isLoading, isFetched, err);
+  console.log(err);
 
   const [data, setData] = useState({
     Student_name: '',
@@ -24,6 +30,20 @@ const Library = () => {
     Librarian_name: '',
     Librarian_phone_number: '',
   });
+
+  const [editBook, setEditBook] = useState({
+    Student_name: '',
+    Book_title: '',
+    Book_id: '',
+    Student_class: '',
+    Date_taken: '',
+    Time: '',
+    Librarian_name: '',
+    Librarian_phone_number: '',
+  });
+
+  const [edit, setEdit] = useState(false);
+  const [editId, setEditId] = useState(null);
 
   const handleChange = (e) => {
     setData((prev) => {
@@ -70,8 +90,27 @@ const Library = () => {
     dispatch(deleteBook(id));
   };
 
-  const handleUpdate = () => {
-    console.log('handleUpdate');
+  // UPDATE BOOK
+
+  const handleUpdate = (id, book) => {
+    setEdit(true);
+    setEditId(id);
+    setEditBook({ ...book });
+  };
+
+  const handleEditChange = (e) => {
+    setEditBook((prev) => {
+      return {
+        ...prev,
+        [e.target.name]: e.target.value,
+      };
+    });
+  };
+
+  const handleEditSubmit = (e) => {
+    e.preventDefault();
+    dispatch(updateBook(editBook));
+    setEdit(false);
   };
   return (
     <div className="library">
@@ -176,11 +215,12 @@ const Library = () => {
           </form>
         </div>
         <div className="table_container">
-          {isLoading && (
-            <div className="spinner">
-              <BeatLoader className="loading-spinner" color="#0f5b97" />
-            </div>
-          )}
+          {isLoading ||
+            (books.length === 0 && (
+              <div className="spinner">
+                <BeatLoader className="loading-spinner" color="#0f5b97" />
+              </div>
+            ))}
           <table className="table">
             <thead>
               <tr className="table_title">
@@ -196,34 +236,111 @@ const Library = () => {
               </tr>
             </thead>
             <tbody>
-              {books.map((book) => (
-                <tr className="table_content" key={book.id}>
-                  <td>{book.id}</td>
-                  <td>{book.Student_name}</td>
-                  <td>{book.Student_class}</td>
-                  <td>{book.Book_title}</td>
-                  <td>{book.created_at.slice(0, 10)}</td>
-                  <td>{book.Book_id}</td>
-                  <td>{book.Librarian_name}</td>
-                  <td>{book.Librarian_phone_number}</td>
-                  <td className="btn_container">
-                    <button
-                      type="button"
-                      className="btn_update edit"
-                      onClick={handleUpdate(book.id)}
-                    >
-                      <FaRegEdit />
-                    </button>
-                    <button
-                      type="button"
-                      className="btn_update delete"
-                      onClick={() => handleDelete(book.id)}
-                    >
-                      <FaTrashAlt />
-                    </button>
-                  </td>
-                </tr>
-              ))}
+              {books.map((book) =>
+                edit && editId === book.id ? (
+                  <tr key={book.id}>
+                    <td>{book.id}</td>
+                    <td>
+                      <form onSubmit={handleEditSubmit}>
+                        <input
+                          name="Student_name"
+                          value={editBook.Student_name}
+                          onChange={handleEditChange}
+                        />
+                      </form>
+                    </td>
+                    <td>
+                      <form onSubmit={handleEditSubmit}>
+                        <input
+                          name="Student_class"
+                          value={editBook.Student_class}
+                          onChange={handleEditChange}
+                        />
+                      </form>
+                    </td>
+                    <td>
+                      <form onSubmit={handleEditSubmit}>
+                        <input
+                          name="Book_title"
+                          value={editBook.Book_title}
+                          onChange={handleEditChange}
+                        />
+                      </form>
+                    </td>
+                    <td>{book.created_at.slice(0, 10)}</td>
+                    <td>
+                      <form onSubmit={handleEditSubmit}>
+                        <input
+                          name="Book_id"
+                          value={editBook.Book_id}
+                          onChange={handleEditChange}
+                        />
+                      </form>
+                    </td>
+                    <td>
+                      <form onSubmit={handleEditSubmit}>
+                        <input
+                          name="Librarian_name"
+                          value={editBook.Librarian_name}
+                          onChange={handleEditChange}
+                        />
+                      </form>
+                    </td>
+                    <td>
+                      <form onSubmit={handleEditSubmit}>
+                        <input
+                          name="Librarian_phone_number"
+                          value={editBook.Librarian_phone_number}
+                          onChange={handleEditChange}
+                        />
+                      </form>
+                    </td>
+                    <td className="btn_container">
+                      <button
+                        type="button"
+                        className="btn_update edit"
+                        onSubmit={handleEditSubmit}
+                      >
+                        <HiOutlineSave />
+                      </button>
+                      <button
+                        type="button"
+                        className="btn_update delete"
+                        onClick={() => handleDelete(book.id)}
+                      >
+                        <FaTrashAlt />
+                      </button>
+                    </td>
+                  </tr>
+                ) : (
+                  <tr className="table_content" key={book.id}>
+                    <td>{book.id}</td>
+                    <td>{book.Student_name}</td>
+                    <td>{book.Student_class}</td>
+                    <td>{book.Book_title}</td>
+                    <td>{book.created_at.slice(0, 10)}</td>
+                    <td>{book.Book_id}</td>
+                    <td>{book.Librarian_name}</td>
+                    <td>{book.Librarian_phone_number}</td>
+                    <td className="btn_container">
+                      <button
+                        type="button"
+                        className="btn_update edit"
+                        onClick={() => handleUpdate(book.id, book)}
+                      >
+                        <FaRegEdit />
+                      </button>
+                      <button
+                        type="button"
+                        className="btn_update delete"
+                        onClick={() => handleDelete(book.id)}
+                      >
+                        <FaTrashAlt />
+                      </button>
+                    </td>
+                  </tr>
+                ),
+              )}
             </tbody>
           </table>
         </div>

@@ -40,6 +40,13 @@ export const deleteBook = createAsyncThunk('book/deleteBook', async (id) => {
     return err.message;
   }
 });
+
+// UPDATE BOOK
+
+export const updateBook = createAsyncThunk('book/updateBook', async (book) => {
+  await axios.patch(`http://127.0.0.1:3000/api/v1/books/${book.id}`, book);
+  return book;
+});
 const bookSlice = createSlice({
   name: 'books',
   initialState,
@@ -92,7 +99,11 @@ const bookSlice = createSlice({
         ...state,
         isLoading: false,
         err: action.payload,
-      }));
+      }))
+      .addCase(updateBook.fulfilled, (state, action) => {
+        console.log(action);
+        console.log(action);
+      });
   },
 });
 
