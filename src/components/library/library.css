@@ -43,6 +43,12 @@
   /* width: 100%; */
 }
 
+.update_input {
+  width: 100%;
+  padding: 0.4rem 0.2rem;
+  border: 1px solid lightgrey;
+}
+
 .btn {
   width: fit-content;
   background: #0f5b97;

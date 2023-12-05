@@ -238,7 +238,7 @@ const Library = () => {
             <tbody>
               {books.map((book) =>
                 edit && editId === book.id ? (
-                  <tr key={book.id}>
+                  <tr className="table_content" key={book.id}>
                     <td>{book.id}</td>
                     <td>
                       <form onSubmit={handleEditSubmit}>
@@ -246,6 +246,7 @@ const Library = () => {
                           name="Student_name"
                           value={editBook.Student_name}
                           onChange={handleEditChange}
+                          className="update_input"
                         />
                       </form>
                     </td>
@@ -255,6 +256,7 @@ const Library = () => {
                           name="Student_class"
                           value={editBook.Student_class}
                           onChange={handleEditChange}
+                          className="update_input"
                         />
                       </form>
                     </td>
@@ -264,6 +266,7 @@ const Library = () => {
                           name="Book_title"
                           value={editBook.Book_title}
                           onChange={handleEditChange}
+                          className="update_input"
                         />
                       </form>
                     </td>
@@ -274,6 +277,7 @@ const Library = () => {
                           name="Book_id"
                           value={editBook.Book_id}
                           onChange={handleEditChange}
+                          className="update_input"
                         />
                       </form>
                     </td>
@@ -283,6 +287,7 @@ const Library = () => {
                           name="Librarian_name"
                           value={editBook.Librarian_name}
                           onChange={handleEditChange}
+                          className="update_input"
                         />
                       </form>
                     </td>
@@ -292,6 +297,7 @@ const Library = () => {
                           name="Librarian_phone_number"
                           value={editBook.Librarian_phone_number}
                           onChange={handleEditChange}
+                          className="update_input"
                         />
                       </form>
                     </td>
