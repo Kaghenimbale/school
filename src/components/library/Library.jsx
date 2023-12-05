@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './library.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchBooks, postBook } from '../../redux/bookSlice';
+import { deleteBook, fetchBooks, postBook } from '../../redux/bookSlice';
 import { BeatLoader } from 'react-spinners';
 import { FaTrashAlt } from 'react-icons/fa';
 import { FaRegEdit } from 'react-icons/fa';
@@ -66,8 +66,8 @@ const Library = () => {
     }
   }, [dispatch, isLoading, isFetched]);
 
-  const handleDelete = () => {
-    console.log('handleDelete');
+  const handleDelete = (id) => {
+    dispatch(deleteBook(id));
   };
 
   const handleUpdate = () => {
@@ -210,14 +210,14 @@ const Library = () => {
                     <button
                       type="button"
                       className="btn_update edit"
-                      onClick={handleUpdate}
+                      onClick={handleUpdate(book.id)}
                     >
                       <FaRegEdit />
                     </button>
                     <button
                       type="button"
                       className="btn_update delete"
-                      onClick={handleDelete}
+                      onClick={() => handleDelete(book.id)}
                     >
                       <FaTrashAlt />
                     </button>
