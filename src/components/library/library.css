@@ -8,7 +8,7 @@
   /* padding: 1rem; */
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  /* gap: 3rem; */
 }
 
 .library h2 {
@@ -24,12 +24,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4rem;
-  /* justify-content: space-between; */
+  gap: 2rem;
 }
 
 .table {
   /* width: 100%; */
+}
+
+.form_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .forms {
@@ -40,7 +45,6 @@
   gap: 1rem;
   background: rgba(0, 0, 0, 0.124);
   padding: 2rem;
-  /* width: 100%; */
 }
 
 .update_input {
@@ -58,7 +62,6 @@
 
 .table_container {
   display: flex;
-  /* justify-content: center; */
 }
 
 .table_title th {

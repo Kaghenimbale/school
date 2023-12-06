@@ -101,8 +101,15 @@ const bookSlice = createSlice({
         err: action.payload,
       }))
       .addCase(updateBook.fulfilled, (state, action) => {
-        console.log(action);
-        console.log(action);
+        const newBooks = state.books.map((book) =>
+          book.id === action.payload.id ? action.payload : book,
+        );
+        return {
+          ...state,
+          books: [...newBooks],
+          isFetched: true,
+          isLoading: false,
+        };
       });
   },
 });

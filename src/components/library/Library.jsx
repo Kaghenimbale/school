@@ -114,9 +114,9 @@ const Library = () => {
   };
   return (
     <div className="library">
-      <h2>LIBRARY BOOKS MANAGMENT</h2>
       <div className="books">
-        <div>
+        <div className="form_content">
+          <h2>LIBRARY BOOKS MANAGMENT</h2>
           <form className="forms" onSubmit={handleSubmit}>
             <label htmlFor="">
               <input
