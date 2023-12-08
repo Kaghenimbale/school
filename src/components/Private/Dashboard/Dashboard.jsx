@@ -23,8 +23,6 @@ const Dashboard = () => {
     setData({ ...data, image: e.target.files[0] });
   };
 
-  // console.log(livres);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -56,13 +54,7 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    // if (!isFetched) {
-    //   dispatch(getBooks());
-    // }
     dispatch(getBooks());
-    // if (isLoading && isFetched) {
-    //   dispatch(getBooks());
-    // }
   }, [dispatch]);
 
   return (
