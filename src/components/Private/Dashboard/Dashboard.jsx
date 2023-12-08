@@ -37,11 +37,9 @@ const Dashboard = () => {
         objectFromFormData[key] = value;
       });
 
-      console.log(formDataForApi);
-
       await dispatch(addBook(objectFromFormData));
 
-      dispatch(getBooks());
+      await dispatch(getBooks());
 
       setData({
         name: '',
@@ -62,7 +60,11 @@ const Dashboard = () => {
       <div className="book_container">
         <h2>Books Available</h2>
         <div>
-          <form className="book_form" onSubmit={handleSubmit}>
+          <form
+            className="book_form"
+            onSubmit={handleSubmit}
+            encType="multipart/form-data"
+          >
             <input
               type="text"
               placeholder="Name"
