@@ -1,43 +1,91 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './dashboard.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { addBook, getBooks } from '../../../redux/livreSlice';
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
+  const { livres } = useSelector((state) => state.livres);
   const [data, setData] = useState({
-    book_name: '',
-    book_image: '',
-    book_author: '',
+    name: '',
+    image: null,
+    author: '',
   });
-  console.log(data);
+
   const handleChange = (e) => {
     setData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   };
+
+  const handleImageChange = (e) => {
+    setData({ ...data, image: e.target.files[0] });
+  };
+
+  // console.log(livres);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const formDataForApi = new FormData();
+      formDataForApi.append('name', data.name);
+      formDataForApi.append('author', data.author);
+      formDataForApi.append('image', data.image);
+
+      const objectFromFormData = {};
+      formDataForApi.forEach((value, key) => {
+        objectFromFormData[key] = value;
+      });
+
+      console.log(formDataForApi);
+
+      await dispatch(addBook(objectFromFormData));
+
+      dispatch(getBooks());
+
+      setData({
+        name: '',
+        image: null,
+        author: '',
+      });
+    } catch (error) {
+      console.error('Error adding book:', error);
+    }
+  };
+
+  useEffect(() => {
+    // if (!isFetched) {
+    //   dispatch(getBooks());
+    // }
+    dispatch(getBooks());
+    // if (isLoading && isFetched) {
+    //   dispatch(getBooks());
+    // }
+  }, [dispatch]);
+
   return (
     <div className="container">
       <div className="book_container">
         <h2>Books Available</h2>
         <div>
-          <form className="book_form">
+          <form className="book_form" onSubmit={handleSubmit}>
             <input
               type="text"
               placeholder="Name"
-              name="book_name"
+              name="name"
+              value={data.name}
               className="input"
               onChange={handleChange}
             />
 
-            <input
-              type="file"
-              name="book_image"
-              className="input"
-              onChange={handleChange}
-            />
+            <input type="file" name="image" onChange={handleImageChange} />
 
             <input
               type="text"
-              name="book_author"
+              name="author"
+              value={data.author}
               placeholder="Title"
               className="input"
               onChange={handleChange}
@@ -50,7 +98,17 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="books">
-        <h2>BOOKS HERE ...</h2>
+        {livres.map((livre) => {
+          return (
+            <div key={livre.id}>
+              <img src={livre.image} alt="img" />
+              <div>
+                <p>{livre.name}</p>
+                <p>{livre.author}</p>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
