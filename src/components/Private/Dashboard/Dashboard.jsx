@@ -32,12 +32,12 @@ const Dashboard = () => {
       formDataForApi.append('author', data.author);
       formDataForApi.append('image', data.image);
 
-      const objectFromFormData = {};
-      formDataForApi.forEach((value, key) => {
-        objectFromFormData[key] = value;
-      });
+      // const objectFromFormData = {};
+      // formDataForApi.forEach((value, key) => {
+      //   objectFromFormData[key] = value;
+      // });
 
-      await dispatch(addBook(objectFromFormData));
+      await dispatch(addBook(formDataForApi));
 
       await dispatch(getBooks());
 
